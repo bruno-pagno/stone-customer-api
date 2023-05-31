@@ -11,7 +11,9 @@ import RedisClient from './clients/redis.client';
 
 @Injectable()
 export class CustomerService {
-  async createCustomer(createCustomerDto: CreateCustomerDto) {
+  async createCustomer(
+    createCustomerDto: CreateCustomerDto,
+  ): Promise<Customer> {
     const { access_token } = await new SSOClient().getAccessToken();
     if (!access_token) throw new UnauthorizedException('Unauthorized');
 
@@ -27,7 +29,7 @@ export class CustomerService {
     return customer;
   }
 
-  async getCustomerById(id: string) {
+  async getCustomerById(id: string): Promise<Customer> {
     const { access_token } = await new SSOClient().getAccessToken();
     if (!access_token) throw new UnauthorizedException('Unauthorized');
 
