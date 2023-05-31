@@ -56,10 +56,10 @@ export class CustomerService {
     )
       throw new BadRequestException('No data to update');
     if (updateCustomerDto.id) {
-      const base64Regex =
-        /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
-      if (base64Regex.test(updateCustomerDto.id)) {
-        throw new BadRequestException('new id is not a base64 string');
+      const uuidRegex =
+        /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
+      if (!uuidRegex.test(updateCustomerDto.id)) {
+        throw new BadRequestException('new id is not a uuid string');
       }
     }
 
