@@ -61,5 +61,28 @@ curl --location --request PUT 'localhost:3000/customer/a4a2a12e-4ac4-4343-9961-f
 }'
 ```
 
+## Estrutura de arquivos
 
+Explicação dos principais arquivos
+```
+src/
+├── app.module.ts -> Módulo principal
+├── clients -> Clients que fazem chamadas HTTP com Axios
+│   ├── redis.client.ts -> Chamadas HTTP para o Keycloak para fazer SSO
+│   └── sso.client.ts -> Chamadas HTTP para o Redis
+├── customer.controller.spec.ts -> Teste do Controller dos clientes
+├── customer.controller.ts -> Controller dos clientes
+├── customer.service.ts -> Casos de uso utilizados pelo controller
+├── domain
+│   └── customer.ts -> Objeto de domínio de cliente
+├── dto
+│   ├── createCustomerDto.ts -> Dto para o caso de uso de criação
+│   └── updateCustomerDto.ts -> Dto para o caso de uso de atualização
+└── main.ts
+Dockerfile/ -> Dockerfile para criar a aplicação Nest
+docker-compose.yml/ -> Docker compose contendo Redis + aplicação
+```
+
+## Dúvida 
+A única coisa que não ficou clara para mim foi a necessidade de enviar o token `Bearer` para as chamadas da aplicação, pois ele não é necessário para realizar a autenticação no SSO ao meu ver, por isso não fiz a inclusão dessa funcionalidade na aplicação. Pensei em aceitar qualquer coisa como um token ficticío, porém não achei que valia a pena fazer isso.
 
