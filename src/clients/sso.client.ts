@@ -1,3 +1,4 @@
+import { BadGatewayException } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 
 type KeycloakTokenResponse = {
@@ -30,10 +31,14 @@ export class SSOClient {
     formData.append('username', email);
     formData.append('password', emailInBase64);
     formData.append('scope', 'openid');
-    const { data } = await this.client.post(
-      '/auth/realms/careers/protocol/openid-connect/token',
-      formData,
-    );
-    return data as unknown as KeycloakTokenResponse;
+    try {
+      const { data } = await this.client.post(
+        '/auth/realms/careers/protocol/openid-connect/token',
+        formData,
+      );
+      return data as unknown as KeycloakTokenResponse;
+    } catch (error) {
+      throw new BadGatewayException('SSO is not available');
+    }
   }
 }
