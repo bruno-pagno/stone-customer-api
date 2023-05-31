@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  ValidationPipe,
+} from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/createCustomerDto';
 
@@ -7,7 +14,9 @@ export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
   @Post()
-  async createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
+  async createCustomer(
+    @Body(new ValidationPipe()) createCustomerDto: CreateCustomerDto,
+  ) {
     return this.customerService.createCustomer(createCustomerDto);
   }
 
