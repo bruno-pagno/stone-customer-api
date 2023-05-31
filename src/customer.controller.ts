@@ -4,11 +4,13 @@ import {
   Get,
   Param,
   Post,
+  Put,
   ValidationPipe,
 } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/createCustomerDto';
 import { Customer } from './domain/customer';
+import { UpdateCustomerDto } from './dto/updateCustomerDto';
 
 @Controller('customer')
 export class CustomerController {
@@ -24,5 +26,13 @@ export class CustomerController {
   @Get(':id')
   async getCustomerById(@Param('id') id: string): Promise<Customer> {
     return this.customerService.getCustomerById(id);
+  }
+
+  @Put(':id')
+  async updateCustomerById(
+    @Param('id') id: string,
+    @Body(new ValidationPipe()) updateCustomerDto: UpdateCustomerDto,
+  ): Promise<Customer> {
+    return this.customerService.updateCustomerById(id, updateCustomerDto);
   }
 }
