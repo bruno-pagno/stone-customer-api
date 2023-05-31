@@ -86,3 +86,6 @@ docker-compose.yml/ -> Docker compose contendo Redis + aplicação
 ## Dúvida 
 A única coisa que não ficou clara para mim foi a necessidade de enviar o token `Bearer` para as chamadas da aplicação, pois ele não é necessário para realizar a autenticação no SSO ao meu ver, por isso não fiz a inclusão dessa funcionalidade na aplicação. Pensei em aceitar qualquer coisa como um token ficticío, porém não achei que valia a pena fazer isso.
 
+## Vídeo explicativo
+
+Vídeo explicativo rápido sobre a API: https://youtu.be/331Ecj7OUao
