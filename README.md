@@ -8,3 +8,10 @@ API criada para o desafio de backend da Stone de acordo com o documento recebido
 - Typescript
 - Docker
 - Redis
+
+## Casos de uso 
+
+
+- Salvar um cliente novo
+- Atualizar um cliente existente
+- Buscar um cliente por ID
