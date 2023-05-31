@@ -7,12 +7,12 @@ export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
   @Post()
-  createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
+  async createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
     return this.customerService.createCustomer(createCustomerDto);
   }
 
   @Get(':id')
-  getCustomerById(@Param('id') id: string) {
+  async getCustomerById(@Param('id') id: string) {
     return this.customerService.getCustomerById(id);
   }
 }
